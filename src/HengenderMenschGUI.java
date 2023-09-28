@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 
 public class HengenderMenschGUI {
 
@@ -12,38 +11,53 @@ public class HengenderMenschGUI {
     private JLabel titel;
     private JTextField wortEingabe;
     private JButton stricheGenerierenButton;
+    private JButton buchstabenCheck;
 
     String wort;
-    String [] buchstabe;
-    public HengenderMenschGUI() {
+    String[] buchstabe, striche;
 
+    public HengenderMenschGUI() {
+        buchstabenCheck.setVisible(false);
         stricheGenerierenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 wort = wortEingabe.getText();
-                for (int i=0; i<wort.length();i++){
-                    strichFeld.setText(strichFeld.getText()+"- ");
+                for (int i = 0; i < wort.length(); i++) {
+                    strichFeld.setText(strichFeld.getText() + "- ");
                 }
                 wortEingabe.setVisible(false);
                 stricheGenerierenButton.setVisible(false);
+                buchstabenCheck.setVisible(true);
+
+                strichFeld.setText("");
+                striche = new String[wort.length()];
+                for (int i = 0; i < striche.length; i++) {
+                    striche[i] = "-";
+                    strichFeld.setText(strichFeld.getText() + striche[i] + " ");
+                    buchstabe = new String[wort.length()];
+
+                }
             }
         });
 
-        buchstabenEingabe.addActionListener(new ActionListener() {
+
+        buchstabenCheck.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 strichFeld.setText("");
-                buchstabe= new String [wort.length()];
-                for(int i=0; i<buchstabe.length; i++){
+                for (int i = 0; i < wort.length(); i++) {
+                    buchstabe[i] = String.valueOf(wort.charAt(i));
 
-                    buchstabe[i]="-";
-                    strichFeld.setText(strichFeld.getText()+buchstabe[i]+" ");
+                    if (buchstabe[i].equals(buchstabenEingabe.getText())) {
+                        striche[i] = buchstabe[i];
+                    }
+                        strichFeld.setText(strichFeld.getText() + striche[i] + " ");
+
+
                 }
-
-
-
-
             }
+
         });
     }
 
