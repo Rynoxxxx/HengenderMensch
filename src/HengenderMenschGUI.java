@@ -21,21 +21,26 @@ public class HengenderMenschGUI {
         stricheGenerierenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                wort = wortEingabe.getText();
-                for (int i = 0; i < wort.length(); i++) {
-                    strichFeld.setText(strichFeld.getText() + "- ");
+                if(!wortEingabe.getText().contains(" ")) {
+                    wort = wortEingabe.getText();
+                    for (int i = 0; i < wort.length(); i++) {
+                        strichFeld.setText(strichFeld.getText() + "- ");
+                    }
+                    wortEingabe.setVisible(false);
+                    stricheGenerierenButton.setVisible(false);
+                    buchstabenCheck.setVisible(true);
+
+                    strichFeld.setText("");
+                    striche = new String[wort.length()];
+                    for (int i = 0; i < striche.length; i++) {
+                        striche[i] = "-";
+                        strichFeld.setText(strichFeld.getText() + striche[i] + " ");
+                        buchstabe = new String[wort.length()];
+
+                    }
                 }
-                wortEingabe.setVisible(false);
-                stricheGenerierenButton.setVisible(false);
-                buchstabenCheck.setVisible(true);
-
-                strichFeld.setText("");
-                striche = new String[wort.length()];
-                for (int i = 0; i < striche.length; i++) {
-                    striche[i] = "-";
-                    strichFeld.setText(strichFeld.getText() + striche[i] + " ");
-                    buchstabe = new String[wort.length()];
-
+                else {
+                    wortEingabe.setText("");
                 }
             }
         });
@@ -49,13 +54,14 @@ public class HengenderMenschGUI {
                 for (int i = 0; i < wort.length(); i++) {
                     buchstabe[i] = String.valueOf(wort.charAt(i));
 
-                    if (buchstabe[i].equals(buchstabenEingabe.getText())) {
+                    if (buchstabe[i].toLowerCase().equals(buchstabenEingabe.getText().toLowerCase())) {
                         striche[i] = buchstabe[i];
                     }
                         strichFeld.setText(strichFeld.getText() + striche[i] + " ");
 
 
                 }
+            buchstabenEingabe.setText("");
             }
 
         });
