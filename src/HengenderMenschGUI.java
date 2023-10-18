@@ -12,6 +12,8 @@ public class HengenderMenschGUI {
     private JTextField wortEingabe;
     private JButton stricheGenerierenButton;
     private JButton buchstabenCheck;
+    private JTextArea textArea1;
+    private JTable table1;
 
     String wort;
     String[] buchstabe, striche;
