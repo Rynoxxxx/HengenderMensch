@@ -13,13 +13,19 @@ public class HengenderMenschGUI {
     private JButton stricheGenerierenButton;
     private JButton buchstabenCheck;
     private JTextArea textArea1;
-    private JTable table1;
+    private JTextField anzahlFalsch;
+    private JLabel anzahlFehler;
 
     String wort;
     String[] buchstabe, striche;
+    int fehler;
+    boolean figurErstellen = false;
+    boolean test=false;
 
     public HengenderMenschGUI() {
         buchstabenCheck.setVisible(false);
+        anzahlFalsch.setVisible(false);
+
         stricheGenerierenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -31,6 +37,8 @@ public class HengenderMenschGUI {
                     wortEingabe.setVisible(false);
                     stricheGenerierenButton.setVisible(false);
                     buchstabenCheck.setVisible(true);
+                    anzahlFalsch.setVisible(true);
+
 
                     strichFeld.setText("");
                     striche = new String[wort.length()];
@@ -58,13 +66,132 @@ public class HengenderMenschGUI {
 
                     if (buchstabe[i].toLowerCase().equals(buchstabenEingabe.getText().toLowerCase())) {
                         striche[i] = buchstabe[i];
+
                     }
-                        strichFeld.setText(strichFeld.getText() + striche[i] + " ");
-
-
+                    strichFeld.setText(strichFeld.getText() + striche[i] + " ");
                 }
-            buchstabenEingabe.setText("");
-            }
+
+                //hier müsste gecheckt werden ob ein buchstabe eingesetzt wurde oder nicht
+                //wenn ja dann figurErstellen=true
+                if(figurErstellen==true) {
+                    fehler = fehler + 1;
+                    if (fehler == 1) {
+                        textArea1.setText("\r\n" +
+                                " \r\n" +
+                                " \r\n" +
+                                " \r\n" +
+                                " \r\n" +
+                                " \r\n" +
+                                " \r\n" +
+                                " \r\n" +
+                                " \r\n|       |     ");
+                    } else if (fehler == 2) {
+                        textArea1.setText("\n" +
+                                " \r\n" +
+                                " \r\n" +
+                                " \r\n" +
+                                " \r\n" +
+                                " \r\n" +
+                                " \r\n" +
+                                " \n    _____      " +
+                                " \r\n|       |     ");
+                    } else if (fehler == 3) {
+                        textArea1.setText("\n" +
+                                " \r\n" +
+                                " \r\n    |       " +
+                                " \r\n    |       " +
+                                " \r\n    |       " +
+                                " \r\n    |       " +
+                                " \r\n    |       " +
+                                " \r\n ___|_      " +
+                                " \r\n|       |     ");
+                    } else if (fehler == 4) {
+                        textArea1.setText("\n" +
+                                " \r\n" +
+                                " \r\n ____       " +
+                                " \r\n    |       " +
+                                " \r\n    |       " +
+                                " \r\n    |       " +
+                                " \r\n    |       " +
+                                " \r\n ___|_      " +
+                                " \r\n|       |     ");
+                    } else if (fehler == 5) {
+                        textArea1.setText("\n" +
+                                " \r\n" +
+                                " \r\n ____       " +
+                                " \r\n |  |       " +
+                                " \r\n    |       " +
+                                " \r\n    |       " +
+                                " \r\n    |       " +
+                                " \r\n ___|_      " +
+                                " \r\n|       |     ");
+                    } else if (fehler == 6) {
+                        textArea1.setText("\n" +
+                                " \r\n" +
+                                " \r\n ____       " +
+                                " \r\n |  |       " +
+                                " \r\n o  |       " +
+                                " \r\n    |       " +
+                                " \r\n    |       " +
+                                " \r\n ___|_      " +
+                                " \r\n|       |     ");
+                    } else if (fehler == 7) {
+                        textArea1.setText("\n" +
+                                " \r\n" +
+                                " \r\n ____       " +
+                                " \r\n |  |       " +
+                                " \r\n o  |       " +
+                                " \r\n |  |       " +
+                                " \r\n    |       " +
+                                " \r\n ___|_      " +
+                                " \r\n|       |     ");
+                    } else if (fehler == 8) {
+                        textArea1.setText("\n" +
+                                " \r\n" +
+                                " \r\n ____       " +
+                                " \r\n |  |       " +
+                                " \r\n o  |       " +
+                                " \r\n⌈|  |       " +
+                                " \r\n    |       " +
+                                " \r\n ___|_      " +
+                                " \r\n|       |     ");
+                    } else if (fehler == 9) {
+                        textArea1.setText("\n" +
+                                " \r\n" +
+                                " \r\n ____       " +
+                                " \r\n |  |       " +
+                                " \r\n o  |       " +
+                                " \r\n⌈|⌉ |       " +
+                                " \r\n    |       " +
+                                " \r\n ___|_      " +
+                                " \r\n|       |     ");
+                    } else if (fehler == 10) {
+                        textArea1.setText("\n" +
+                                " \r\n" +
+                                " \r\n ____       " +
+                                " \r\n |  |       " +
+                                " \r\n o  |       " +
+                                " \r\n⌈|⌉ |       " +
+                                " \r\n \\ |       " +
+                                " \r\n ___|_      " +
+                                " \r\n|       |     ");
+                        //spiel zuende-----------------------------------------------
+                    }
+                    figurErstellen=false;
+                }
+                anzahlFalsch.setText("Anzahl Fehler: "+fehler);
+                buchstabenEingabe.setText("");
+                if(fehler==10){
+                    buchstabenEingabe.setText("Verloren!");
+                    buchstabenEingabe.setEditable(false);
+                    buchstabenCheck.disable();
+                }
+                if(strichFeld.equals(wort)){
+                    buchstabenEingabe.setText("Gewonnen!");
+                    buchstabenEingabe.setEditable(false);
+                    buchstabenCheck.disable();
+                }
+              }
 
         });
     }
