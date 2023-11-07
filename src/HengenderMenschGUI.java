@@ -66,13 +66,13 @@ public class HengenderMenschGUI {
 
                     if (buchstabe[i].toLowerCase().equals(buchstabenEingabe.getText().toLowerCase())) {
                         striche[i] = buchstabe[i];
-
                     }
                     strichFeld.setText(strichFeld.getText() + striche[i] + " ");
                 }
+                if(wort.indexOf(buchstabenEingabe.getText())==-1){
+                    figurErstellen=true;
+                }
 
-                //hier müsste gecheckt werden ob ein buchstabe eingesetzt wurde oder nicht
-                //wenn ja dann figurErstellen=true
                 if(figurErstellen==true) {
                     fehler = fehler + 1;
                     if (fehler == 1) {
@@ -84,7 +84,7 @@ public class HengenderMenschGUI {
                                 " \r\n" +
                                 " \r\n" +
                                 " \r\n" +
-                                " \r\n|       |     ");
+                                " \r\n|     |     ");
                     } else if (fehler == 2) {
                         textArea1.setText("\n" +
                                 " \r\n" +
@@ -93,8 +93,8 @@ public class HengenderMenschGUI {
                                 " \r\n" +
                                 " \r\n" +
                                 " \r\n" +
-                                " \n    _____      " +
-                                " \r\n|       |     ");
+                                " \r\n _____      " +
+                                " \r\n|     |     ");
                     } else if (fehler == 3) {
                         textArea1.setText("\n" +
                                 " \r\n" +
@@ -104,7 +104,7 @@ public class HengenderMenschGUI {
                                 " \r\n    |       " +
                                 " \r\n    |       " +
                                 " \r\n ___|_      " +
-                                " \r\n|       |     ");
+                                " \r\n|     |     ");
                     } else if (fehler == 4) {
                         textArea1.setText("\n" +
                                 " \r\n" +
@@ -114,7 +114,7 @@ public class HengenderMenschGUI {
                                 " \r\n    |       " +
                                 " \r\n    |       " +
                                 " \r\n ___|_      " +
-                                " \r\n|       |     ");
+                                " \r\n|     |     ");
                     } else if (fehler == 5) {
                         textArea1.setText("\n" +
                                 " \r\n" +
@@ -124,7 +124,7 @@ public class HengenderMenschGUI {
                                 " \r\n    |       " +
                                 " \r\n    |       " +
                                 " \r\n ___|_      " +
-                                " \r\n|       |     ");
+                                " \r\n|     |     ");
                     } else if (fehler == 6) {
                         textArea1.setText("\n" +
                                 " \r\n" +
@@ -134,7 +134,7 @@ public class HengenderMenschGUI {
                                 " \r\n    |       " +
                                 " \r\n    |       " +
                                 " \r\n ___|_      " +
-                                " \r\n|       |     ");
+                                " \r\n|     |     ");
                     } else if (fehler == 7) {
                         textArea1.setText("\n" +
                                 " \r\n" +
@@ -144,7 +144,7 @@ public class HengenderMenschGUI {
                                 " \r\n |  |       " +
                                 " \r\n    |       " +
                                 " \r\n ___|_      " +
-                                " \r\n|       |     ");
+                                " \r\n|     |     ");
                     } else if (fehler == 8) {
                         textArea1.setText("\n" +
                                 " \r\n" +
@@ -154,7 +154,7 @@ public class HengenderMenschGUI {
                                 " \r\n⌈|  |       " +
                                 " \r\n    |       " +
                                 " \r\n ___|_      " +
-                                " \r\n|       |     ");
+                                " \r\n|     |     ");
                     } else if (fehler == 9) {
                         textArea1.setText("\n" +
                                 " \r\n" +
@@ -164,7 +164,7 @@ public class HengenderMenschGUI {
                                 " \r\n⌈|⌉ |       " +
                                 " \r\n    |       " +
                                 " \r\n ___|_      " +
-                                " \r\n|       |     ");
+                                " \r\n|     |     ");
                     } else if (fehler == 10) {
                         textArea1.setText("\n" +
                                 " \r\n" +
@@ -174,7 +174,7 @@ public class HengenderMenschGUI {
                                 " \r\n⌈|⌉ |       " +
                                 " \r\n \\ |       " +
                                 " \r\n ___|_      " +
-                                " \r\n|       |     ");
+                                " \r\n|     |     ");
                         //spiel zuende-----------------------------------------------
                     }
                     figurErstellen=false;
@@ -186,7 +186,7 @@ public class HengenderMenschGUI {
                     buchstabenEingabe.setEditable(false);
                     buchstabenCheck.disable();
                 }
-                if(strichFeld.equals(wort)){
+                if(strichFeld.getText().indexOf("-")==-1){
                     buchstabenEingabe.setText("Gewonnen!");
                     buchstabenEingabe.setEditable(false);
                     buchstabenCheck.disable();
